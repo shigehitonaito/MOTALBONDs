@@ -1,0 +1,12 @@
+<% if rooms.count >= 1 %>
+	<% rooms.each do |room| %>
+		<%= link_to dms_users_path(room_id: room.id), remote: true, class: "link_decoration" do  %>
+			<div class ="chat_user_box">
+				<%= attachment_image_tag(room.chat_friend(current_user), :profile_image, size: "50x50", fallback: "no_image_icon.png", class: "icon") %>
+				<%= room.chat_friend(current_user).nickname %>
+			</div>
+		<% end %>
+	<% end %>
+<% else %>
+	<p>ユーザーが見つかりませんでした。</p>
+<% end %>

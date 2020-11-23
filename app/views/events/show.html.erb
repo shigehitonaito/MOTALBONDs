@@ -1,0 +1,16 @@
+
+
+<div class ="event_show_page clearfix">
+	<table>
+		<tr>
+			<th>行き先:</th><td><%= @event.place %></td>
+		</tr>
+		<tr>
+			<th>予定日:</th><td><%= @event.at_date.strftime('%Y/%m/%d') %></td>
+		</tr>
+	</table>
+	<%= link_to "編集する", edit_event_path(@event.id), class: "link_decoration" %>
+	<%= link_to "削除する", event_path(@event.id), method: :delete, class: "link_decoration" %>
+	<%= link_to "カレンダーに戻る", :back, class: "link_decoration" %>
+</div>
+

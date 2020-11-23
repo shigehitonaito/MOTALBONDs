@@ -1,0 +1,57 @@
+
+
+
+<%= flash[:correct_user] %>
+
+<div class ="posts_index_box">
+	<div class ="posts_index_left_box">
+		<%= render 'posts/posts', posts: @posts %>
+	</div>
+	<div class ="posts_index_right_box">
+		<% if flash[:post] || @post.errors.any? %>
+			<div class ="posts_notice_box">
+				<p><%= flash[:post] %></p>
+				<% @post.errors.full_messages.each do |message| %>
+					<p><%= message %></p>
+				<% end %>
+			</div>
+		<% end %>
+		<div class ="new_post_box">
+			<p>※動画またはyoutube動画URLのどちらか1つを指定してください。</p>
+			<%= form_with(model: @post, url: posts_path, method: :post, local: true ) do |f| %>
+				<table>
+					<tr>
+						<td><%= f.label :title, "タイトル" %></td>
+					</tr>
+					<tr>
+						<td><%= f.text_field :title, placeholder: "タイトル" %></td>
+					</tr>
+					<tr>
+						<td><%= f.label :body, "動画説明" %></td>
+					</tr>
+					<tr>
+						<td><%= f.text_area :body, placeholder: "動画説明", size: "40x3" %></td>
+					</tr>
+					<tr>
+						<td><%= f.label :movie, "動画ファイル" %></td>
+					</tr>
+					<tr>
+						<td><%= f.label :movie, "動画をアップロード", class: "file_upload_button" %><%= f.file_field :movie, accept: 'video/*',style: "display:none;"  %></td>
+					</tr>
+					<tr>
+						<td><%= f.label :youtube_url, "youtube動画URL" %></td>
+					</tr>
+					<tr>
+						<td><%= f.text_area :youtube_url, placeholder: "youtube動画URL", size: "40x3" %></td>
+					</tr>
+				</table>
+				<%= f.submit "投稿する", class: "submit_button" %>
+			<% end %>
+		</div>
+	</div>
+</div>
+<span class ="up">
+	<a href ="#">
+		<i class="fas fa-chevron-up"></i>
+	</a>
+</span>

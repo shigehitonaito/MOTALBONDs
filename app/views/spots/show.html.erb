@@ -1,0 +1,138 @@
+<% if @error_spot %>
+  <% if @error_spot.errors.any? %>
+    <div class ="notice">
+      <% @error_spot.errors.full_messages.each do |message| %>
+        <p><%= message %></p>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class ="spot_show_page">
+    <div class="orverlay">
+    </div>
+    <% if @spot.user == current_user %>
+      <div class = "hm_button">
+        <p>編集</p>
+        <%= form_with(model: @spot, url: spot_path(@spot.id), method: :patch, local: true) do |f| %>
+          <table>
+            <tr>
+               <td><%= f.label :place, "場所名" %></td>
+            </tr>
+            <tr>
+             <td><%= f.text_field :place, size: "25x1", placeholder: "場所名" %></td>
+            </tr>
+            <tr>
+              <td></td>
+            </tr>
+            <tr>
+              <td class ="explanation">個人を特定できる名称は避けてください。</td>
+            </tr>
+            <tr>
+              <td><%= f.label :address, "住所" %></td>
+            </tr>
+            <tr>
+              <td><%= f.text_area :address, size: "35x2", placeholder: "住所" %></td>
+            </tr>
+            <tr>
+              <td></td>
+            </tr>
+            <tr>
+              <td class ="explanation">住所または、建物の正式名称を入力してください。<br>
+              例:『沖縄美ら海水族館』、『東京スカイツリー』</td>
+            </tr>
+            <tr>
+              <td><%= f.label :spot_image, "場所画像" %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :spot_image, "場所画像", class: "file_upload_button" %><%= f.attachment_field :spot_image, style: "display:none;"  %></td>
+            </tr>
+            <tr>
+               <td><%= f.label :body, "場所説明" %></td>
+            </tr>
+            <tr>
+             <td><%= f.text_area :body, size: "35x2", placeholder: "場所説明" %></td>
+            </tr>
+            <tr>
+              <td>施設</td>
+            </tr>
+            <tr>
+               <td><%= f.select :wheather, {屋内: true, 屋外: false} %></td>
+            </tr>
+          </table>
+          <%= f.submit "送信する", class: "submit_button" %>
+        <% end %>
+        <div class="spot_destroy_button">
+          <%= link_to "削除する", spot_path(@spot.id), method: :delete, class: "link_decoration" %>
+        </div>
+      </div>
+      <div class="hm_icon">
+        <a class="menu_trigger" href="#">
+          <span></span>
+          <span></span>
+          <span></span>
+        </a>
+      </div>
+    <% end %>
+
+    <div class = "spot_show_box clearfix">
+     <div class="spot_show_image_box">
+        <%= attachment_image_tag(@spot, :spot_image, size: "300x200", fallback: "no_image_spot.jpg") %>
+     </div>
+     <div class ="spot_show_info_box">
+      <div class ="spot_show_main_box clearfix">
+        <div class ="spot_show_place_box">
+          <span class="spot_show_place"><%= @spot.place %></span>
+            <% if @spot.wheather == true %>
+            <i class="fas fa-cloud-rain"></i>
+          <% elsif @spot.wheather == false  %>
+            <i class="fas fa-cloud-sun"></i>
+          <% end %>
+        </div>
+        <div class ="spot_good_box">
+          <span class ="spot_favorite_<%= @spot.id%>">
+            <%= render "spot_favorites/button", spot: @spot %>
+          </span>
+          <span class ="spot_bookmark_<%= @spot.id%>">
+            <%= render "spot_bookmarks/button", spot: @spot %>
+          </span>
+        </div>
+      </div>
+         <p><%= @spot.body %></p>
+    </div>
+  </div>
+  <div id='map'></div>
+</div>
+<!-- JS記述 -->
+
+<script>
+
+$(function(){
+  $('.menu_trigger').on('click', function(event){
+      $(this).toggleClass('active');
+      $('.hm_icon').toggleClass('active');
+      $('.orverlay').toggleClass('active');
+      $('.hm_button').toggleClass('active');
+      event.preventDefault();
+    });
+  });
+
+
+
+function initMap(){
+  let map = new google.maps.Map(document.getElementById('map'), {
+  center: {lat: <%= @spot.latitude %>, lng: <%= @spot.longitude %>},
+  zoom: 18
+  });
+
+  let marker = new google.maps.Marker({
+  	position: {lat: <%= @spot.latitude %>, lng: <%= @spot.longitude %>},
+  	map: map
+  })
+}
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API'] %>&callback=initMap" async defer></script>
+
+
+

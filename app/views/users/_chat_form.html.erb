@@ -1,0 +1,6 @@
+<% if room != nil %>
+	<%= form_with(model: message, url:  message_path(room_id: room.id), method: :post, remote: true)do |f|%>
+		<%= f.text_area :content, size: "25x3", class: "chat_text" %>
+		<%= f.submit "送信する", class: "submit_button" %>
+	<% end %>
+<% end %>

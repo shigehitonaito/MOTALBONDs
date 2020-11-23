@@ -1,0 +1,45 @@
+// Place all the styles related to the events controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+/*イベント詳細画面*/
+
+.event_show_page{
+	width:500px;
+	margin:0 auto;
+	background-color: white;
+	padding:30px 50px;
+	table{
+		margin: 10px 0 20px 0;
+		td{
+			padding-left: 10px;
+		}
+	}
+
+	a:last-child{
+		display:inline-block;
+		float: right;
+	}
+	a:hover{
+		opacity: 0.5;
+	}
+}
+
+/*イベント編集画面*/
+.event_edit_box{
+	width:500px;
+	margin:20px auto;
+	background-color: white;
+	padding:30px 50px;
+	text-align:center;
+	table{
+		width: 300px;
+		margin: 20px auto;
+		td{
+			text-align:left;
+			padding-left: 10px;
+		}
+	}
+}

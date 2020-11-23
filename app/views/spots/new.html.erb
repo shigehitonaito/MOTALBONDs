@@ -1,0 +1,41 @@
+
+<% if @spot.errors.any? %>
+	<div class ="notice">
+     	 <% @spot.errors.full_messages.each do |message| %>
+        	<p><%= message %></p>
+      	<% end %>
+	</div>
+<% end %>
+
+
+<div class ="spot_new_page">
+	<%= form_with(model: @spot, url: spots_path, method: :post, local: true) do |f| %>
+		<table>
+			<tr>
+				<th><%= f.label :place, "場所名" %></th><td><%= f.text_field :place, placeholder: "場所名", size: "25x1" %></td>
+			</tr>
+			<tr>
+				<th></th>
+				<td class ="explanation">個人を特定できる名称は避けてください。</td>
+			<tr>
+			<tr>
+				<th><%= f.label :address, "住所" %></th><td><%= f.text_area :address, placeholder: "住所", size: "35x2" %></td>
+			</tr>
+			<tr>
+				<th></th>
+				<td class ="explanation">住所または、建物の正式名称を入力してください。<br>
+				例:『沖縄美ら海水族館』、『東京スカイツリー』</td>
+			<tr>
+			<tr>
+				<th><%= f.label :spot_image, "場所画像" %></th><td><%= f.label :spot_image, "場所画像", class: "file_upload_button" %><%= f.attachment_field :spot_image, style: "display:none;"  %></td>
+			</tr>
+			<tr>
+				<th><%= f.label :body, "場所説明" %></th><td><%= f.text_area :body, placeholder: "場所説明", size: "35x2" %></td>
+			</tr>
+			<tr>
+				<th><%= f.label :wheather, "施設" %></th><td><%= f.select :wheather, {屋内: true, 屋外: false} %></td>
+			</tr>
+		</table>
+	<%= f.submit "送信する", class: "submit_button" %>
+	<% end %>
+</div>

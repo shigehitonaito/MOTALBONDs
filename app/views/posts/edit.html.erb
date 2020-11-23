@@ -1,0 +1,21 @@
+
+<% if @post.errors.any? %>
+	<div class ="notice">
+		<% @post.errors.full_messages.each do |message| %>
+			<p><%= message %></p>
+		<% end %>
+	</div>
+<% end %>
+<div class ="post_edit_page">
+	<%= form_with(model: @post, url: post_path(@post.id), method: :patch, local: true ) do |f| %>
+		<table>
+			<tr>
+				<td><%= f.label :title, "タイトル" %></td><td><%= f.text_field :title, placeholder: "タイトル" %></td>
+			</tr>
+			<tr>
+				<td><%= f.label :body, "動画説明" %></td><td><%= f.text_area :body, size: "40x3", placeholder: "動画説明" %></td>
+			</tr>
+		</table>
+		<%= f.submit "送信する", class: "submit_button" %>
+	<% end %>
+</div>

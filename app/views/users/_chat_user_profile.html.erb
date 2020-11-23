@@ -1,0 +1,14 @@
+<div class ="chat_user_image_box">
+	<%= attachment_image_tag(user, :profile_image, size: "150x150", fallback: "no_image_icon.png", class: "chat_user_icon") %>
+</div>
+<div class ="chat_user_info_box">
+	<P><%= user.nickname %></P>
+	<p><%= user.introduction %></p>
+	<% unless user == current_user %>
+		<div class ="chat_link_box">
+			<%= link_to rooms_path(user_id: user.id), method: :post, class: "link_decoration" do %>
+				<i class="far fa-paper-plane"></i>チャットを始める
+			<% end %>
+		</div>
+	<% end %>
+</div>

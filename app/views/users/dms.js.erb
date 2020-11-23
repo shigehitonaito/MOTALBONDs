@@ -1,0 +1,7 @@
+$(".chat_user_profile").html("<%= j(render 'users/chat_user_profile', user: @user) %>");
+$(".chat_users_box").html("<%= j(render 'users/chat_users', users: @users) %>");
+$(".chat_messages_box").html("<%= j(render 'users/chat_messages', room: @room) %>");
+$(".partners_profile_box").html("<%= j(render 'users/chat_partners_profile', room: @room) %>");
+$(".chat_message_form_box").html("<%= j(render 'users/chat_form', room: @room, message: @message) %>");
+
+

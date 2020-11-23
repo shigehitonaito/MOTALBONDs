@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MOTALBONDs</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js" integrity="sha384-3Nqiqht3ZZEO8FKj7GR1upiI385J92VwWNLj+FqHxtLYxd9l+WYpeqSOrLh0T12c" crossorigin="anonymous"></script>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <% if content_for?(:body_attributes) %>
+      <%= yield(:body_attributes) %>
+    <% end %>>
+    <header>
+      <div class ="header_box clearfix">
+        <div class ="logo">
+          <%= link_to root_path, class: "link_decoration" do %>
+            <p class="logo_name">MORTALBONDs</p>
+          <% end %>
+        </div>
+        <nav>
+          <% if user_signed_in? %>
+            <%= link_to posts_path, class: "link_decoration" do %>
+              <i class="fas fa-video"></i>
+            <% end %>
+            <%= link_to spots_path, class: "link_decoration" do %>
+              <i class="fas fa-map-marked-alt"></i>
+            <% end %>
+            <%= link_to dms_users_path, class: "link_decoration" do %>
+              <i class="far fa-paper-plane"></i>
+            <% end %>
+            <%= link_to user_path(current_user.id), class: "link_decoration" do %>
+              <i class="fas fa-user-circle"></i>
+            <% end %>
+            <%= link_to destroy_user_session_path, method: :delete, class: "link_decoration" do %>
+              <i class="fas fa-sign-out-alt"></i>
+            <% end %>
+          <% else %>
+            <%= link_to posts_path, class: "link_decoration" do %>
+              <i class="fas fa-video"></i>
+            <% end %>
+            <%= link_to spots_path, class: "link_decoration" do %>
+              <i class="fas fa-map-marked-alt"></i>
+            <% end %>
+            <%= link_to new_user_session_path, class: "link_decoration" do %>
+            <i class="fas fa-sign-in-alt"></i>
+              <% end %>
+            <%= link_to new_user_registration_path, class: "link_decoration" do %>
+              <span class ="sign_up_box">sign up</span>
+            <% end %>
+          <% end %>
+       </nav>
+      </div>
+    </header>
+    <main>
+      <%= yield %>
+    </main>
+
+    <footer>
+      <span>MOTALBONDs</span>
+    </footer>
+  </body>
+</html>
+
+<script>
+    $(function() {
+    $('.up').on('click',function(event){
+      $('body, html').animate({
+        scrollTop:0
+      }, 500);
+      event.preventDefault();
+    });
+  });
+</script>

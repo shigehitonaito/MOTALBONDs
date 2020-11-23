@@ -1,0 +1,20 @@
+
+
+<div class ="relationship_main_box">
+	<P>フォロワー<span class ="text_forte"><%= @user.followers.count %></span>件</P>
+	<div class ="relationship_scroll_box", style="width:600px;height:580px;overflow:auto;">
+		<% @users.each do |user| %>
+			<div class ="follower_following_box">
+				<%= link_to user_path(user.id) do %>
+					<%= attachment_image_tag(user, :profile_image, size: "50x50", fallback: "no_image_icon.png", class: "relationship_icon") %>
+					<span class ="relationship_nickname"><%= user.nickname %></span>
+				<% end %>
+				<span class ="relationship_button_box">
+					<span class= "user_follow_<%= user.id %>">
+						<%= render "relationships/button", user: user %>
+					</span>
+				</span>
+			</div>
+		<% end %>
+	</div>
+</div>

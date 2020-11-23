@@ -1,0 +1,15 @@
+<% if user_signed_in? %>
+	<% if post.favorited_by?(current_user) %>
+		<%= link_to post_post_favorites_path(post.id), method: :delete, remote: true, class: "link_decoration" do %>
+			<i class="fas fa-thumbs-up"></i><%= post.post_favorites.count %>
+		<% end %>
+	<% else %>
+		<%= link_to post_post_favorites_path(post.id), method: :post, remote: true, class: "link_decoration" do %>
+			<i class="far fa-thumbs-up"></i></i><%= post.post_favorites.count %>
+		<% end %>
+	<% end %>
+<% else %>
+	<%= link_to post_post_favorites_path(post.id), method: :post, local: true, class: "link_decoration" do %>
+		<i class="far fa-thumbs-up"></i></i><%= post.post_favorites.count %>
+	<% end %>
+<% end %>

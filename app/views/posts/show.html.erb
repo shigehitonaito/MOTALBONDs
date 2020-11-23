@@ -1,0 +1,54 @@
+<div  class ="res_post_show_page">
+	<div class ="post_show_page">
+		<div class ="post_movie_box">
+			<% if @post.youtube_url == nil %>
+				<%= video_tag(@post.movie.url, :controls => true, :autoplay => false, size: "760x500", :loop => true) %>
+			<% else %>
+				<iframe width="760" height="500" src="https://www.youtube.com/embed/<%= @post.youtube_url %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			<% end %>
+		</div>
+		<div class ="post_movie_info_box clearfix">
+			<h2><%= @post.title %></h2>
+			<span class ="posted_date"><%= l @post.created_at, format: :short %>に公開済み</span>
+			<div class ="post_good_box">
+				<span class ="post_favorite_<%= @post.id%>">
+					<%= render "post_favorites/button", post: @post %>
+				</span>
+				<span class ="post_bookmark_<%= @post.id%>">
+					<%= render "post_bookmarks/button", post: @post %>
+				</span>
+			</div>
+		</div>
+		<div class ="post_user_info cleafix">
+			<%= attachment_image_tag(@post.user, :profile_image, size: "40x40", fallback: "no_image_icon.png", class: "post_icon") %>
+			<div class ="post_user_name_box">
+				<p class ="post_user_name"><%= @post.user.nickname %></p>
+				<span class ="post_body"><%= @post.body %></span>
+			</div>
+			<div class ="post_button_box">
+				<% if @post.user == current_user %>
+				<div class ="post_edit_button">
+					<%= link_to "編集する", edit_post_path(@post.id), class: "link_decoration" %>
+				</div>
+				<div class ="post_destroy_button">
+					<%= link_to "削除する", post_path(@post.id), method: :delete, class: "link_decoration" %>
+				</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+	<div class ="post_comment_box">
+		<%= form_with(model: [@post,@new_post_comment],url: post_post_comments_path(@post.id), method: :post, remote: true)do |f| %>
+			<div class = "post_comment_error">
+				<%= render 'posts/comment_error', post_comment: @post_comment %>
+			</div>
+			<%= f.text_field :body, size: "20x1", class: "comment_form_clean", placeholder: "コメント" %>
+			<%= f.submit "送信する", class: "submit_button" %>
+		<% end %>
+		<div class ="post_comment_table", style="width:300px;height:680px;overflow:auto;">
+			<%= render "post_comments/comment_table", post_comments: @post.post_comments %>
+		</div>
+	</div>
+</div>
+
+

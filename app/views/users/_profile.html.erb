@@ -1,0 +1,64 @@
+
+	<div class = "profile_image_box">
+		<%= attachment_image_tag(user, :profile_image, size: "150x150", fallback: "no_image_icon.png", class: "icon") %>
+	</div>
+	<div class ="profile_body">
+		<div class = "profile_text clearfix">
+			<div class ="blanck_box"></div>
+			<div class="nickname"><%= user.nickname %></div>
+			<%if user == current_user %>
+				<%= link_to  edit_user_path(user.id), class: "link_decoration" do %>
+					<div class ="edit_bottun">
+						<i class="fas fa-user-cog"></i> 編集する
+					</div>
+				<% end %>
+			<% end %>
+			<div class= "user_follow_<%= user.id %>">
+				<%= render "relationships/button", user: user %>
+			</div>
+		</div>
+
+		<div class = "info_nav">
+			動画投稿<span class = "text_forte"><%= user.posts.count%></span>件
+			<span class ="relation_user_<%= user.id %>">
+				<%= render "relationships/relation_user_info", user: user %>
+			</span>
+		</div>
+		<div class ="introduction">
+			<%= user.introduction %>
+		</div>
+	</div>
+	<% if user == current_user %>
+		<div class ="user_show_nav">
+			<div class="nav_ball">
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+			<span class ="ball_box clearfix">
+				<div data-turbolinks="false">
+					<%= link_to my_events_users_path do %>
+						<div class="calendar_ball">
+							<i class="far fa-calendar-alt ball_item1"></i>
+						</div>
+					<% end %>
+				</div>
+				<%= link_to bookmarks_users_path do %>
+					<div class ="bookmark_ball clearfix">
+						<i class="far fa-bookmark ball_item2"></i>
+					</div>
+				<% end %>
+				<%= link_to dms_users_path do %>
+					<div class="mail_ball">
+						<i class="far fa-paper-plane ball_item3"></i>
+					</div>
+				<% end %>
+			</span>
+		</div>
+	<% end %>
+
+
+
+
+
+

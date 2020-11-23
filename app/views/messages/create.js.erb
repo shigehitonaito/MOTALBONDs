@@ -1,0 +1,3 @@
+$(".chat_messages_box").html("<%= j(render 'users/chat_messages', room: @room) %>");
+$(".chat_message_form_box").html("<%= j(render 'users/chat_form', message: @message, room: @room) %>");
+$(".chat_text").val('')

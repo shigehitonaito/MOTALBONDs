@@ -1,0 +1,27 @@
+ja:
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M"
+      short: "%Y/%m/%d"
+      chat: "%m/%d %H:%M"
+      very_shrot: "%H:%M"
+  activerecord:
+    attributes:
+      post:
+        title: タイトル
+        body: 動画説明
+      spot:
+        place: 場所
+        address: 住所
+        body: 投稿本文
+      event:
+        place: 行き先
+        at_date: 予定日
+      user:
+        name: 名前
+        nickname: ニックネーム
+        birthday: 生年月日
+        introduction: 自己紹介
+        email: eメール
+      post_comment:
+        body: コメント

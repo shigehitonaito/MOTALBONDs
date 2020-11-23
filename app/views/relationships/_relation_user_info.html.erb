@@ -1,0 +1,6 @@
+<%= link_to followings_user_path(user.id),class: "link_decoration" do %>
+	フォロー中<span class = "text_forte"><%= user.followings.count %></span>人
+<% end %>
+<%= link_to followers_user_path(user.id),class: "link_decoration" do %>
+	フォロワー<span class = "text_forte"><%= user.followers.count %></span>人
+<% end %>

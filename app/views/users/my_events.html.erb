@@ -1,0 +1,110 @@
+
+
+
+<div class ="calendar_box">
+	<div class="calendar"></div>
+    <div class="event_tabs clearfix">
+        <div class ="new_event_box">
+            <p>新しいイベント</p>
+            <%= form_with(model: @event, url: events_path, method: :post, local: true)do |f| %>
+                <% if @event.errors.any? %>
+                    <div class ="event_notice">
+                        <% @event.errors.full_messages.each do |message| %>
+                            <p><%= message %></p>
+                        <% end %>
+                    </div>
+                <% end %>
+                <table>
+                    <tr>
+                        <th align="right">行き先</th>
+                        <td align="left"> <%= f.text_field :place, size: "20x1", placeholder: "場所"%></td>
+                    </tr>
+                    <tr>
+                        <th align="right">予定日</th>
+                        <td align="left"> <%= f.date_field :at_date %><br></td>
+                    </tr>
+                </table>
+                <%= f.submit "追加する", class: "submit_button" %>
+            <% end %>
+        </div>
+        <input id="post_items" type="radio" name="tab_item" checked>
+        <label class="tab_item" for="post_items">自分の予定</label>
+        <input id="spot_items" type="radio" name="tab_item">
+        <label class="tab_item" for="spot_items">共有された予定</label>
+        <div class="tab_content" id="post_contents">
+            <div class ="events_box", style="width:350px;height:365px;overflow:auto;">
+                <% @events.each do |event| %>
+                    <div class ="event_box">
+                        <%= link_to event_path(event.id), class: "link_decoration" do %>
+                            <span><%= event.place %><br>
+                            <%= event.at_date.strftime('%Y/%m/%d')%></span>
+                        <% end %>
+                        <%= link_to edit_event_path(event.id), class: "link_decoration" do %>
+                            編集する
+                        <% end %>
+                        <%= link_to event_path(event.id), method: :delete, class: "link_decoration" do %>
+                            削除する
+                        <% end %>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+        <div class="tab_content" id="spot_contents">
+            <div class ="events_box", style="width:350px;height:360px;overflow:auto;">
+                ver2.0にて実装予定！！お楽しみに！！
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function doReloadNoCache() {
+     window.location.reload(true);
+    }
+    // if (location.href.indexOf('reload')==-1){
+    //     location.href=location.href+'?reload';
+    // }
+   	$(function () {
+	    function eventCalendar() {
+	        return $('.calendar').fullCalendar({});
+        };
+        function clearCalendar() {
+            $('.calendar').html('');
+        };
+    $(document).on('turbolinks:load', function () {
+    	 eventCalendar();
+	});
+	$(document).on('turbolinks:before-cache', clearCalendar);
+	});
+
+	$('.calendar').fullCalendar({
+                 events: '/users/my_events.json',
+                //カレンダー上部を年月で表示させる
+                titleFormat: 'YYYY年 M月',
+                //曜日を日本語表示
+                dayNamesShort: ['日', '月', '火', '水', '木', '金', '土'],
+                //ボタンのレイアウト
+                header: {
+                    left: '',
+                    center: 'title',
+                    right: 'today prev,next'
+                },
+                 eventColor: '#4682B4',
+                 eventTextColor: 'white',
+                 eventRender: function(event, element) {
+                    element.css("font-size", "12px");
+                    element.css("padding", "2px");
+                },
+                 selectable: true,
+                 selectHelper: true,
+                 buttonText: {
+                    prev: '前',
+                    next: '次',
+                    today: '今日',
+                    month: '月',
+                    week: '週',
+                    day: '日'
+                }
+            });
+</script>

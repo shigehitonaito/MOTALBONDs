@@ -1,0 +1,12 @@
+<% if users.count >= 1 %>
+	<% users.each do |user| %>
+		<%= link_to dms_users_path(user_id: user.id), remote: true, class: "link_decoration" do  %>
+			<div class ="chat_user_box">
+				<%= attachment_image_tag(user, :profile_image, size: "50x50", fallback: "no_image_icon.png", class: "icon") %>
+				<%= user.nickname %>
+			</div>
+		<% end %>
+	<% end %>
+<% else %>
+	<p>ユーザーが見つかりませんでした。</p>
+<% end %>

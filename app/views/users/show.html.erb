@@ -1,0 +1,54 @@
+
+<%= flash[:not_correct] %>
+
+<div class ="profile_box clearfix">
+	<%= render 'profile', user: @user %>
+</div>
+
+
+<div class="shift_tabs clearfix">
+	<input id="post_items" type="radio" name="tab_item" checked>
+	<label class="tab_item" for="post_items">動画投稿</label>
+	<input id="spot_items" type="radio" name="tab_item">
+	<label class="tab_item" for="spot_items">スポット投稿</label>
+	<div class="tab_content" id="post_contents">
+		<div class ="mypage_box">
+			<%= render 'posts/posts', posts: @posts %>
+		</div>
+	</div>
+	<div class="tab_content" id="spot_contents">
+		<p>スポット投稿<span class ="text_forte"><%= @spots.count %></span>件</p>
+		<div class ="mypage_box">
+			<%= render 'spots/mypage_spots', spots: @spots %>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+<span class ="up">
+	<a href ="#">
+		<i class="fas fa-chevron-up"></i>
+	</a>
+</span>
+
+<script>
+	$(function(){
+	 	$('.nav_ball').on('click', function(event){
+		 	$(this).toggleClass('active');
+		 	$('.calendar_ball').toggleClass('active');
+		 	$('.bookmark_ball').toggleClass('active');
+		 	$('.mail_ball').toggleClass('active');
+	 	 	event.preventDefault();
+	 	});
+  	});
+
+</script>
+
+
+
+
+

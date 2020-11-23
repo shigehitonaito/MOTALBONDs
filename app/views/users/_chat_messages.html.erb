@@ -1,0 +1,28 @@
+<% if room != nil %>
+<% p room %>
+	<% room.messages.each do |message| %>
+		<% if message.user == current_user %>
+			<div class ="my_message">
+				<%= message.content %>
+				<p><%= l message.created_at, format: :chat %></p>
+			</div>
+		<% else %>
+			<div class ="partners_message">
+				<%= message.content %>
+				<p><%= l message.created_at, format: :chat %></p>
+			</div>
+		<% end %>
+	<% end %>
+<% end %>
+
+
+<script>
+	 $('.chat_messages_box').animate({scrollTop: $('.chat_messages_box')[0].scrollHeight}, 'fast');
+</script>
+
+
+
+
+
+
+

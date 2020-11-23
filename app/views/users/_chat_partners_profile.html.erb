@@ -1,0 +1,7 @@
+
+<% if room != nil %>
+	<%= link_to user_path(room.chat_friend(current_user).id), class: "link_decoration" do %>
+		<%= attachment_image_tag(room.chat_friend(current_user), :profile_image, size: "50x50", fallback: "no_image_icon.png", class: "icon") %>
+		<%= room.chat_friend(current_user).nickname %>
+	<% end %>
+<% end %>

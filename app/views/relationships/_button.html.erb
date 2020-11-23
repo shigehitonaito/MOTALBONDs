@@ -1,0 +1,14 @@
+<% unless user == current_user %>
+	<% if current_user.following?(user) %>
+		<span class = "unfollow_button">
+			<%= link_to user_relationships_path(user.id), method: :delete, remote: true, class: "link_decoration" do %>
+				<i class="fas fa-user-alt"></i>
+				<i class="fas fa-check"></i>
+			<% end %>
+		</span>
+	<% else %>
+		<span class = "follow_button"><%= link_to "フォローする",  user_relationships_path(user.id), method: :post, remote: true, class: "link_decoration" %></span>
+	<% end %>
+<% end %>
+
+

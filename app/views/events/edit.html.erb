@@ -1,0 +1,22 @@
+
+<% if @event.errors.any? %>
+	<div class ="event_notice">
+		<% @event.errors.full_messages.each do |message| %>
+			<p><%= message %></p>
+		<% end %>
+	</div>
+<% end %>
+
+<div class ="event_edit_box">
+	<%= form_with(model: @event, url: event_path(@event.id), method: :patch, local: true)do |f| %>
+		<table>
+		 	<tr>
+		 		<th>行き先</th><td><%= f.text_field :place, placeholder: "行き先" %></td>
+		 	</tr>
+		 	<tr>
+		 		<th>予定日</th><td><%= f.date_field :at_date, placeholder: "予定日" %></td>
+		 	</tr>
+	 	</table>
+		<%= f.submit "送信する", class: "submit_button" %>
+	<% end %>
+</div>

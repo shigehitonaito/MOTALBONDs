@@ -1,0 +1,314 @@
+// Place all the styles related to the posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.post_user{
+	margin-right: 10px;
+}
+.post_title{
+	width:100%;
+	padding:10px 0 5px 70px;
+}
+
+.post_info{
+	padding-bottom: 15px;
+}
+
+.post_nav{
+	float: right;
+}
+
+.post{
+	margin:10px 0;
+}
+
+.post:hover{
+	opacity:0.8;
+}
+
+.post:nth-child(1){
+	margin-top:0;
+}
+
+
+
+/*Topページ*/
+
+.main_image_box{
+	width:100%;
+	height:700px;
+	background-image: image-url("main_image.jpg");
+	background-size: cover;
+	background-position:center;
+	padding-top: 200px;
+	p{
+		text-align: center;
+		font-size: 30px;
+		font-weight: 600;
+		color: white;
+		text-shadow: 1px 1.5px 3px #808080;
+	}
+}
+
+.main_message_box{
+	margin-top: 50px;
+	width: 100%;
+	height: 80px;
+	text-align:center;
+	p{
+		height: 40px;
+		line-height: 40px;
+		display: inline-block;
+		font-size: 25px;
+		color: white;
+		text-shadow: 1px 1.5px 3px #808080;
+		border-bottom:double 3px gray;
+	}
+}
+
+.main_content_box{
+	width: 80%;
+	margin: 100px auto 50px auto;
+	div{
+		width: calc(100%/4);
+		float: left;
+		text-align:center;
+		font-size: 50px;
+		color: gray;
+		p{
+			width:80%;
+			margin: 20px auto 0 auto;
+			font-size: 20px;
+		}
+	}
+}
+
+
+/*投稿一覧画面　&　新規投稿画面*/
+
+.posts_index_box{
+	width:1150px;
+	margin:0 auto;
+}
+
+.posts_index_left_box{
+	width:560px;
+	float:left;
+	margin-right: 90px;
+}
+
+.posts_index_right_box{
+	width: 500px;
+	float:left;
+}
+
+.new_post_box{
+	text-align:center;
+	padding: 50px;
+	background-color: white;
+	width:500px;
+	margin:30px auto 0 auto;
+	table{
+		width:450px;
+		margin:30px auto;
+		td{
+			text-align: left;
+		}
+		td:nth-child(2n){
+			margin-top:10px;
+		}
+	}
+}
+
+/*新規投稿エラーメッセージ*/
+
+.posts_notice_box{
+	color:red;
+	opacity:0.5;
+	background-color: #FFCCCC;
+	border:double 5px red;
+	text-align: center;
+	width:400px;
+	text-align: left;
+	margin:0 auto;
+	padding: 5px 0 5px 20px;
+}
+
+.posts_notice_box p{
+  margin:3px 0;
+}
+
+
+
+
+/*投稿詳細ページ*/
+
+.post_icon{
+	border-radius: 50%;
+	border: solid 0.1em gray;
+}
+
+
+.res_post_show_page{
+	width: 1230px;
+	margin:0 auto;
+}
+.post_show_page{
+	background-color:white;
+	width:920px;
+	margin:20px auto;
+	float:left;
+	padding-bottom: 17px;
+}
+
+.post_movie_box{
+	padding: 2em 0;
+	text-align: center;
+
+}
+
+.posted_date{
+	font-size: 0.8em;
+	color: gray;
+}
+
+.post_movie_info_box{
+	width: 760px;
+	margin: 0 auto;
+}
+
+.post_user_info{
+	width:760px;
+	margin: 10px auto;
+}
+
+.post_good_box{
+	float:right;
+}
+
+.post_button_box{
+	float:right;
+}
+
+.post_comment_box{
+	width:300px;
+	float:left;
+	margin:20px 0 0 10px;
+}
+
+.table_post{
+	margin:7px 5px;
+}
+
+.post_comment_body_box{
+	margin-left: 30px;
+}
+
+.post_edit_button{
+	float: left;
+	border: solid 0.1em green;
+	border-radius: 5px;
+	padding: 0.1em;
+}
+
+.post_edit_button:hover{
+	color: white;
+	background-color:green;
+}
+
+
+.destroy_button{
+	float: left;
+	border: solid 0.1em red;
+	border-radius: 5px;
+	padding: 0.1em;
+	margin-left:1em;
+}
+
+.destroy_button:hover{
+	color: white;
+	background-color:red;
+}
+
+.post_user_name_box{
+	margin-left: 12px;
+	float:left;
+	width: 500px;
+}
+
+.post_user_name{
+	font-size: 0.8em;
+	font-weight: 600;
+}
+
+.post_body{
+	line-height: 1.3em;
+	font-size: 0.9em;
+}
+
+.post_comment_destroy_button{
+	border: solid 0.1em red;
+	border-radius: 5px;
+	padding: 0.1em;
+	background-color: white;
+}
+
+.post_comment_destroy_button:hover{
+	color: white;
+	background-color:red;
+}
+
+
+/*投稿詳細コメントエラーメッセージ*/
+
+.post_comment_notice{
+	color:red;
+	opacity:0.5;
+	background-color: #FFCCCC;
+	border:double 5px red;
+	text-align: center;
+	width:280px;
+	text-align: left;
+	margin:0 auto;
+	padding: 5px 0 5px 10px;
+}
+
+.post_comment_notice p{
+	margin:3px 0;
+	font-size: 12px;
+	font-weight: 600;
+}
+
+
+
+/*投稿編集画面*/
+
+
+.post_edit_page{
+	padding: 50px 0 50px 0;
+	text-align:center;
+	background-color: white;
+	width:760px;
+	margin:50px auto;
+	table{
+		width: 500px;
+		margin:10px auto;
+		td{
+			text-align: left;
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

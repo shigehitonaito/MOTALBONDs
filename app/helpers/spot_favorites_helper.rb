@@ -1,0 +1,2 @@
+module SpotFavoritesHelper
+end

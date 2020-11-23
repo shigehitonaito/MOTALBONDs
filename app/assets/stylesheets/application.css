@@ -1,0 +1,321 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ *= require fullcalendar
+ */
+ *{
+ 	margin: 0;
+ 	padding: 0;
+ 	box-sizing: border-box;
+ }
+
+ .clearfix::after {
+   content: "";
+   display: block;
+   clear: both;
+ }
+
+
+/*ヘッダー*/
+header{
+  width:100%;
+  height:70px;
+  background-color:gray;
+  color:white;
+  position:fixed;
+  top:0;
+  z-index:100;
+}
+
+.logo_name{
+    width:200px;
+    float:left;
+    font-weight: 600;
+    font-size:30px;
+    transition: all 0.4s ease;
+}
+
+.logo_name:hover{
+  opacity:0.7;
+}
+
+.header_box{
+  width:90%;
+  margin:0 auto;
+}
+nav{
+      width:230px;
+      float:right;
+      font-size: 25px;
+      line-height:70px;
+}
+
+nav a{
+  margin-right:15px;
+  transition: all 0.2s ease;
+}
+
+nav a:last-child{
+  margin-right:0;
+}
+
+nav a:hover{
+   opacity:0.7;
+}
+
+main{
+  margin:70px auto 50px auto;
+  width:100%;
+  flex: 1;
+}
+
+footer{
+  width:100%;
+  height:100px;
+  background-color:gray;
+  text-align: center;
+}
+
+footer span{
+    font-size:25px;
+    line-height:100px;
+    color:white;
+    font-weight: 300;
+}
+
+
+
+
+
+/*上に行くボタン*/
+
+ .up{
+  line-height: 1.8em;
+  color: gray;
+  font-size:30px;
+  width:1.8em;;
+  height:1.8em;
+  border:solid 2px gray;
+  border-radius: 50%;
+  text-align: center;
+  position: fixed;
+  right: 90px;
+  bottom: 110px;
+}
+
+.up:hover{
+  background: white;
+}
+
+
+
+ html {
+    font-size: 62.5%;
+}
+
+body {
+    display: flex;
+    flex-flow: column;
+    min-height: 100vh;
+    font-size: 1.6rem;
+    line-height: 1.4;
+    background-color: #F5F5F5;
+}
+
+* {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+a,
+a:visited {
+    color: inherit;
+}
+
+
+.link_decoration{
+	text-decoration: none;
+}
+
+.text_forte{
+	font-weight: bolder;
+}
+
+
+.submit_button{
+  padding: 5px 10px;
+  border:solid 0.1em #1ba5dc;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.submit_button:hover{
+  color: white;
+  background: #1ba5dc;
+}
+
+.submit_button_box{
+  margin-top: 10px;
+  text-align: center;
+}
+
+.file_upload_button{
+  display: block;
+  background-color: #F5F5F5;
+  border-radius: 5px;
+  border: solid 0.05em black;
+  width: 10em;
+  color: gray;
+  text-decoration: none;
+  text-align: center;
+}
+
+.file_upload_button:hover{
+    background-color: white;
+}
+
+/*input[type="text"] {
+        width: 300px;
+        height: 30px;
+    }*/
+
+.notice{
+  color:red;
+  opacity:0.5;
+  background-color: #FFCCCC;
+  border:double 5px red;
+  text-align: center;
+  width:400px;
+  text-align: left;
+  margin:0 auto;
+  padding: 5px 0 5px 20px;
+}
+
+.notice p{
+  margin:3px 0;
+}
+
+a:hover{
+  opacity:0.5;
+}
+
+.sign_up_box{
+  font-size: 20px;
+}
+
+/*新規登録画面*/
+
+.registration_box{
+  background-color: white;
+  width: 760px;
+  margin: 50px auto 0 auto;
+  font-size: 15px;
+  text-align:center;
+  padding: 50px 0;
+}
+
+.registration_box table{
+  margin:0 auto 50px auto;
+  text-align: left;
+}
+
+
+.session_box{
+  background-color: white;
+  width: 500px;
+  margin: 50px auto 0 auto;
+  font-size: 15px;
+  text-align:center;
+  padding: 50px 0;
+}
+
+.session_box table{
+  margin:0 auto 20px auto;
+  text-align: left;
+}
+
+.devise_errors_box{
+  color:red;
+  opacity:0.5;
+  background-color: #FFCCCC;
+  border:double 5px red;
+  text-align: center;
+  width:400px;
+  text-align: left;
+  margin:0 auto;
+  padding: 5px 0 5px 20px;
+}
+
+.devise_errors_box p{
+  margin:3px 0;
+}
+
+
+.password_reset_box{
+  background-color: white;
+  width: 500px;
+  margin: 50px auto 0 auto;
+  font-size: 15px;
+  text-align:center;
+  padding: 50px 0;
+}
+
+.field{
+  margin: 10px auto;
+}
+
+.password_reset_box p{
+  margin:0 auto 20px auto;
+  text-align: left;
+}
+
+
+.edit_password_box{
+  background-color: white;
+  width: 600px;
+  margin: 50px auto 0 auto;
+  font-size: 15px;
+  text-align:left;
+  padding: 50px 200px;
+}
+
+.edit_password_box p{
+  text-align: center;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+
+
+.edit_passwordbox p{
+  margin:0 auto 20px auto;
+  text-align: left;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

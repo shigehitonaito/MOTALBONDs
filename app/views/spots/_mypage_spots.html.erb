@@ -1,0 +1,21 @@
+<% spots.each do |spot| %>
+	<div class ="spot_box clearfix">
+		<%= link_to spot_path(spot.id), class: "link_decoration" do  %>
+			<div class ="spots_image_box">
+			 	<%= attachment_image_tag(spot, :spot_image, size: "300x200", fallback: "no_image_spot.jpg") %>
+			 </div>
+			 <div class ="mypage_spots_info_box">
+	  			<%= spot.place %><br>
+	  			<span><%= l spot.created_at, format: :short %></span>
+			</div>
+		<% end %>
+  		<div class ="spots_good_box">
+			<span class ="spot_favorite_<%= spot.id%>">
+		  		<%= render "spot_favorites/button", spot: spot %>
+			 </span>
+			 <span class ="spot_bookmark_<%= spot.id%>">
+			 	<%= render "spot_bookmarks/button", spot: spot %>
+			 </span>
+		</div>
+	</div>
+<% end %>

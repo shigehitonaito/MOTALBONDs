@@ -1,0 +1,2 @@
+module PostBookmarksHelper
+end

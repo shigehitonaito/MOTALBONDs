@@ -1,0 +1,56 @@
+
+
+<%= render "devise/shared/error_messages", resource: resource %>
+
+<div class ="registration_box">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <table>
+      <tr>
+        <th><%= f.label :name %></th>
+      </tr>
+      <tr>
+        <td><%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "氏名" %></td>
+      </tr>
+      <tr>
+        <th><%= f.label :nickname %></th>
+      </tr>
+      <tr>
+        <td><%= f.text_field :nickname, autofocus: true, autocomplete: "nickname", placeholder: "ニックネーム", size: "35x2" %></td>
+      </tr>
+      <tr>
+        <th><%= f.label :birthday %></th>
+      </tr>
+      <tr>
+        <td><%= f.date_field :birthday, autofocus: true, autocomplete: "birthday" %></td>
+      </tr>
+      <tr>
+        <th><%= f.label :email %></th>
+      </tr>
+      <tr>
+        <td><%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Eメール", size: "30x2" %></td>
+      </tr>
+      <tr>
+        <th><%= f.label :password %></th>
+      </tr>
+      <tr>
+        <td><% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %><br />
+          <%= f.password_field :password, autocomplete: "new-password", placeholder: "パスワード" %></td>
+      </tr>
+      <tr>
+        <th><%= f.label :password_confirmation %></th>
+      </tr>
+      <tr>
+        <td><%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "確認用パスワード" %></td>
+      </tr>
+    </table>
+
+     <div class="actions">
+        <%= f.submit "Sign up", class: "submit_button" %>
+      </div>
+  <% end %>
+</div>
+
+
+

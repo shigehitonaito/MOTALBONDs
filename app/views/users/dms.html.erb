@@ -1,0 +1,54 @@
+<div class ="dms_page clearfix">
+	<div class ="back_box"></div>
+	<input id ="chat_rooms" type = "radio" name ="tab_items" checked>
+	<label class ="tab_items" for ="chat_rooms"><i class="far fa-comments"></i></label>
+	<input id ="chat_users" type = "radio" name ="tab_items">
+	<label class ="tab_items" for ="chat_users"><i class="fas fa-users"></i></label>
+	<div class ="back_box"></div>
+	<div class ="tab_contents clearfix" id="chat_rooms_contents">
+		<div class ="chat_user_left_box">
+			<div class ="chat_friends_box", style="width:400px;height:600px;overflow:auto;">
+				<%= render 'chat_friends', rooms: @rooms %>
+			</div>
+		</div>
+		<div class ="chat_messages_right_box">
+			<% if current_user.chat_rooms.count != 0 %>
+				<div class ="chat-friend_name_box">
+					<div class ="partners_profile_box">
+						<%= render "chat_partners_profile", room: @room %>
+					</div>
+				</div>
+				<div class ="chat_messages_box", style="width:500px;height:500px;overflow:auto;">
+					<%= render "chat_messages", room: @room %>
+				</div>
+				<div class ="chat_message_form_box">
+					<%= render 'chat_form', message: @message, room: @room %>
+				</div>
+			<% else %>
+				<div class ="no_room_message_box">
+					フレンドとチャットを始めよう！！
+				</div>
+			<% end %>
+		</div>
+	</div>
+	<div class ="tab_contents clearfix" id="chat_users_contents">
+		<div class ="chat_user_left_box">
+			<div class ="chat_user_search_box">
+				<%= form_with(url: dms_users_path, method: :get, remote: true) do |f| %>
+				<%= f.text_field :search_user, placeholder: "ユーザー検索" %>
+				<%= f.submit '検索する', class: "submit_button"  %>
+				<% end %>
+			</div>
+			<div class ="chat_users_box", style="width:400px;height:600px;overflow:auto;">
+				<%= render 'chat_users', users: @users %>
+			</div>
+		</div>
+		<div class ="chat_user_profile">
+			<%= render 'chat_user_profile', user: @user %>
+		</div>
+	</div>
+</div>
+
+
+
+

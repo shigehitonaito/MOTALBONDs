@@ -1,0 +1,9 @@
+<% if post_comment %>
+	<% if post_comment.errors.any? %>
+		<div class ="post_comment_notice">
+	     	 <% post_comment.errors.full_messages.each do |message| %>
+	        	<p><%= message %></p>
+	      	<% end %>
+		</div>
+	<% end %>
+<% end %>

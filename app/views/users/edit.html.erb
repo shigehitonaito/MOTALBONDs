@@ -1,0 +1,54 @@
+<% if @user.errors.any? %>
+	<div class ="notice">
+     	 <% @user.errors.full_messages.each do |message| %>
+        	<p><%= message %></p>
+      	<% end %>
+	</div>
+<% end %>
+
+<div class ="edit_box clerfix">
+		<div class ="edit_profile_image_box">
+			<%= attachment_image_tag(@user, :profile_image, size: "150x150", fallback: "no_image_icon.png", class: "edit_icon") %>
+			<%= link_to "画像を削除する", image_destroy_user_path(@user.id), method: :patch, class: "link_decoration" %><br>
+			<%= link_to "パスワードを変更する", edit_user_registration_path, class: "link_decoration" %>
+		</div>
+		<%= form_with(model: @user, url: user_path(@user.id), method: :patch, local: true) do |f| %>
+			<table>
+				<tr>
+					<th><%= f.label :profile_image, "プロフィール画像" %></th><td><%= f.label :profile_image, "プロフィール画像", class: "file_upload_button" %><%= f.attachment_field :profile_image, style: "display:none;"  %></td>
+				</tr>
+				<tr>
+					<th>ユーザーネーム</th><td><%= f.text_field :nickname, placeholder: "ユーザーネーム" %></td>
+				</tr>
+				<tr>
+					<th></th>
+					<td class ="explanation">他のユーザーに表示されます。他のユーザーや知り合いに検索されやすいようなユーザーネームがおすすめです。</td>
+				<tr>
+					<th>自己紹介</th><td><%= f.text_area :introduction, placeholder: "自己紹介" %></td>
+				</tr>
+				<tr>
+					<th>氏名</th><td><%= f.text_field :name, placeholder: "氏名" %></td>
+				</tr>
+				<tr>
+					<th></th>
+					<td class ="explanation">他のユーザーに表示されません。また、ユーザー認証以外の用途で使用致しません。</td></tr>
+				</tr>
+				<tr>
+					<th>誕生日</th>
+					<td>
+						<% if @user.birthday == nil %>
+							<%= f.date_field :birthday, value: Time.now.strftime("%Y-%m-%d") %>
+						<% else %>
+							<%= f.date_field :birthday %>
+						<% end %>
+					</td>
+				</tr>
+				<tr>
+					<th>メースアドレス</th><td><%= f.email_field :email, placeholder: "eメール" %></td>
+				</tr>
+			</table>
+			<div class ="submit_button_box">
+						<%= f.submit "保存する", class: "submit_button" %>
+			</div>
+		<% end %>
+</div>

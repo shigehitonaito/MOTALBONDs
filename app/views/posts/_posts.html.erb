@@ -1,0 +1,34 @@
+
+	<% @posts.each do |post| %>
+		<div class ="post">
+			<% if post.youtube_url == nil %>
+				<%= video_tag(post.movie.url, :controls => true, :autoplay => false, :autobuffer => true, :loop => false, size: "560x315") %>
+			<% else %>
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/<%= post.youtube_url %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			<% end %>
+			<div class ="post_user_and_title">
+				<%= link_to user_path(post.user.id) do %>
+					<%= attachment_image_tag(post.user, :profile_image, size: "40x40", fallback: "no_image_icon.png", class: "post_icon") %>
+				<% end %>
+				<%=link_to post_path(post.id), class: "link_decoration" do %>
+					<div class ="post_title">
+						<span class ="text_forte"><%= post.title %></span>
+					</div>
+				<% end %>
+			</div>
+			<div class ="post_info clearfix">
+				<%=link_to post_path(post.id), class: "link_decoration" do %>
+					<%= l post.created_at %>
+				<% end %>
+				<div class ="post_nav">
+					<i class="far fa-comment-dots"></i> <%= post.post_comments.count %>
+					<span class ="post_favorite_<%= post.id%>">
+						<%= render "post_favorites/button", post: post %>
+					</span>
+					<span class ="post_bookmark_<%= post.id%>">
+						<%= render "post_bookmarks/button", post: post %>
+					</span>
+				</div>
+			</div>
+		</div>
+	<% end %>
