@@ -39,7 +39,7 @@ class UsersController < ApplicationController
 	end
 
 	def bookmarks
-		@user = User.find(current_user.id)
+		@user = current_user
 		@posts = @user.bookmarking_posts.includes(:user, :post_favorites, :post_bookmarks)
 		@spots = @user.bookmarking_spots.includes(:user, :spot_favorites, :spot_bookmarks)
 	end
@@ -50,14 +50,14 @@ class UsersController < ApplicationController
 	end
 
 	def dms
-		@user = User.find(current_user.id)
-		@users = current_user.followings & current_user.followers
-		@rooms = current_user.chat_rooms
+		@user = current_user
+		@users = @user.followings & @user.followers
+		@rooms = @user.chat_rooms
 		@message = Message.new
 	 	@room = nil
-	 	if current_user.chat_rooms.count != 0
+	 	if @user.chat_rooms.count != 0
 		 	last_message_id = 0
-		 	current_user.chat_rooms.each do |chat_room|
+		 	@user.chat_rooms.each do |chat_room|
 		 		if chat_room.messages.count != 0
 			 		if chat_room.messages.last.id > last_message_id
 			 			last_message_id = chat_room.messages.last.id
@@ -68,7 +68,7 @@ class UsersController < ApplicationController
 			 	last_message = Message.find(last_message_id)
 			 	@room = Room.find(last_message.room_id)
 			 else
-			 	@room = current_user.chat_rooms.last
+			 	@room = @user.chat_rooms.last
 			 end
 		 end
 		if params[:room_id]

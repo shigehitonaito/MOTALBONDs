@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
 
-	before_action :correct_user, only: [:edit, :update, :destroy]
+	before_action :correct_user, except: [:create]
 
 
 	def show

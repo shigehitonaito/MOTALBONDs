@@ -84,9 +84,9 @@
         <div class ="spot_show_place_box">
           <span class="spot_show_place"><%= @spot.place %></span>
             <% if @spot.wheather == true %>
-            <i class="fas fa-cloud-rain"></i>
+            (屋内施設)
           <% elsif @spot.wheather == false  %>
-            <i class="fas fa-cloud-sun"></i>
+           （屋外施設）
           <% end %>
         </div>
         <div class ="spot_good_box">

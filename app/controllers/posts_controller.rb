@@ -29,7 +29,7 @@ class PostsController < ApplicationController
 		if @post.movie.filename == nil && @post.youtube_url == nil
 			flash[:post] = "動画を選択してください。"
 			if @post.save
-				redirect_to root_path
+				redirect_to posts_path
 			else
 				@posts = Post.includes(:user).order(id: "DESC")
 				render "index"
@@ -37,14 +37,14 @@ class PostsController < ApplicationController
 		elsif @post.movie.filename != nil && @post.youtube_url != nil
 			flash[:post] = "複数の動画が選択されています。"
 			if @post.save
-				redirect_to root_path
+				redirect_to posts_path
 			else
 				@posts = Post.includes(:user).order(id: "DESC")
 				render "index"
 			end
 		else
 			if @post.save
-				redirect_to root_path
+				redirect_to posts_path
 			else
 				@posts = Post.includes(:user).order(id: "DESC")
 				render "index"
